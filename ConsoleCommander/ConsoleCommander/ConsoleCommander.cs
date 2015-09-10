@@ -9,52 +9,90 @@ namespace ConsoleCommander
 {
     class ConsoleCommander
     {
-        //private List<ConsoleCommanderPane> panes = new List<ConsoleCommanderPane>();
+        private List<ConsoleCommanderParentPane> panes = new List<ConsoleCommanderParentPane>();
+        private bool horizontal = true;
 
-        public ConsoleCommander()
+        public ConsoleCommander(bool horizontal = true)
         {
-            List<ConsoleCommanderPane> panes = new List<ConsoleCommanderPane>();
-            panes.Add(new ConsoleCommanderPane(Console.WindowWidth / 2, Console.WindowHeight));
-            panes[0].Write("Hello,asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf");
-            panes.Add(new ConsoleCommanderPane(Console.WindowWidth / 2, Console.WindowHeight));
-            panes[1].Write("World!");
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    panes.Add(new List<string>());
-            //    if (i % 2 == 0)
-            //    {
-            //        panes[i].Add("Hello! " + i);
-            //    }
-            //    else
-            //    {
-            //        for (int j = 0; j < 100; j++)
-            //        {
-            //            panes[i].Add("World! " + i + " " + j);
-            //        }
-            //    }
-            //}
-            
-            int width = Console.WindowWidth / panes.Count;
-            for (int i = 0; i < panes.Count; i++)
+            Console.BufferWidth++;
+            this.horizontal = horizontal;
+
+            //panes.Add(new ConsoleCommanderPane(Console.WindowWidth / 3, Console.WindowHeight));
+            //panes[0].Write("Hello,");
+            //panes[0].Write("Test text 1");
+            //panes[0].Write("This is a really long string that will overflow the pane, and would normally write onto the next pane to the right");
+            //panes[0].Write("Test text 2");
+            //panes.Add(new ConsoleCommanderPane(Console.WindowWidth / 3, Console.WindowHeight));
+            //panes[1].Write("World!");
+            //panes.Add(new ConsoleCommanderPane(Console.WindowWidth / 3, Console.WindowHeight));
+            //panes[2].Write("Hello, World again!");
+            //panes[2].Write("Hello, World again! 2");
+        }
+
+        public void Render()
+        {
+            Console.Clear();
+            if (horizontal)
             {
-                Console.SetCursorPosition(i * width, 0);
-                Console.Write(panes[i].Render());
-                if (i + 1 < panes.Count)
+                for (int i = 0; i < panes.Count; i++)
                 {
-                    for (int j = 0; j < Console.WindowHeight; j++)
+                    string render = panes[i].Render();
+                    string[] renderLines = render.Split('\n');
+                    for (int j = 0; j < renderLines.Length && j < Console.WindowHeight; j++)
                     {
-                        Console.SetCursorPosition(width - 1, j);
-                        Console.Write("│");
+                        Console.SetCursorPosition(i * panes[i].getWidth(), j);
+                        Console.Write(renderLines[j]);
+                    }
+                    if (i + 1 < panes.Count)
+                    {
+                        for (int j = 0; j < panes[i].getHeight(); j++)
+                        {
+                            Console.SetCursorPosition(((i + 1) * panes[i].getWidth()) - 1, j);
+                            Console.Write("│");
+                        }
                     }
                 }
             }
+            else
+            {
+                for (int i = 0; i < panes.Count; i++)
+                {
+                    string render = panes[i].Render();
+                    //string render = "";
+                    //string[] renderLines = panes[i].Render().Split('\n');
 
-            Console.ReadKey();
+                    //for (int k = 0; k < renderLines.Length; k++)
+                    //{
+                    //    int _width = renderLines[k].Length >= Console.WindowWidth ? Console.WindowWidth : renderLines[k].Length;
+                    //    render += renderLines[k].Substring(0, _width);
+                    //}
+
+                    Console.SetCursorPosition(0, i == 0 ? 0 : panes[i - 1].getHeight());
+                    Console.Write(render);
+                    if (i + 1 < panes.Count)
+                    {
+                        for (int j = 0; j < panes[i].getWidth(); j++)
+                        {
+                            Console.SetCursorPosition(j, panes[i].getHeight() - 1);
+                            Console.Write("─");
+                        }
+                    }
+                }
+            }
         }
 
-        public void AddPane()
+        public ConsoleCommanderParentPane AddParentPane(int width, int height)
         {
-            //panes.Add(new ConsoleCommanderPane(null));
+            ConsoleCommanderParentPane pane = new ConsoleCommanderParentPane(width, height);
+            panes.Add(pane);
+            return pane;
+        }
+
+        public ConsoleCommanderPane AddPane(int width, int height)
+        {
+            ConsoleCommanderPane pane = new ConsoleCommanderPane(width, height);
+            panes.Add(pane);
+            return pane;
         }
     }
 }
