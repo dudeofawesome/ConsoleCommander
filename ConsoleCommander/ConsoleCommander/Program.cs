@@ -21,12 +21,12 @@ namespace ConsoleCommander
             pp1.Write("The time is ");
             pp1.Write(DateTime.Now.ToString());
             pp1.Write("Test text 2");
-            ConsoleCommanderParentPane pp2 = cmdr.AddParentPane(Console.WindowWidth, 3);
+            ConsoleCommanderParentPane pp2 = cmdr.AddParentPane(Console.WindowWidth, Console.WindowHeight - pp1.getHeight());
             pp21 = pp2.AddPane(pp2.getWidth() / 2, pp2.getHeight());
             pp21.Write("2-1 Hello,");
             pp21.Write("Test text 1");
             pp21.Write("This is a really long string that will overflow the pane, and would normally write onto the next pane to the right");
-            pp21.Write("Test text 2");
+            //pp21.Write("Spaced Test text 2", 0, 6, true);
             pp22 = pp2.AddPane(pp2.getWidth() / 2, pp2.getHeight());
             pp22.Write("2-2 World!");
             pp22.Write("Test text 1");
@@ -45,6 +45,8 @@ namespace ConsoleCommander
         private static void timerHandler(object sender, EventArgs e)
         {
             pp1.Write(DateTime.Now.ToString(), 0, 2);
+            pp21.Write(DateTime.Now.Millisecond.ToString(), 0, 0, true);
+            //pp22.Write("Danger Will Robinson!", 0, 0, true);
             cmdr.Render();
         }
     }

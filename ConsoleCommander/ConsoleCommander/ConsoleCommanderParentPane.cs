@@ -25,7 +25,7 @@ namespace ConsoleCommander
             this.horizontal = horizontal;
         }
 
-        public virtual void Write(string line, int x = -1, int y = -1, bool allowOverFlow = true)
+        public virtual void Write(string line, int x = -1, int y = -1, bool insert = false, bool allowOverFlow = true)
         {
 
         }
@@ -98,6 +98,11 @@ namespace ConsoleCommander
             else
             {
                 //Console.Write("─");
+            }
+
+            if (ret.EndsWith("\n"))
+            {
+                ret = ret.Remove(ret.Length - 1, 1);
             }
 
             return ret;

@@ -20,7 +20,7 @@ namespace ConsoleCommander
             this.height = height;
         }
 
-        override public void Write(string line, int x = -1, int y = -1, bool allowOverFlow = true)
+        override public void Write(string line, int x = -1, int y = -1, bool insert = false, bool allowOverFlow = true)
         {
             if (x < 0)
             {
@@ -30,19 +30,40 @@ namespace ConsoleCommander
             {
                 y = pane.Count;
             }
-            if (y >= pane.Count)
+            if (insert)
             {
-                pane.Add(line);
+                string spacing = "";
+                while (spacing.Length < x)
+                {
+                    spacing += " ";
+                }
+                while (pane.Count <= y)
+                {
+                    pane.Add("");
+                }
+                pane.Insert(y, spacing + line);
             }
             else
             {
-                int w = line.Length;
-                if (x + w > pane[y].Length)
+                if (y >= pane.Count)
                 {
-                    w = pane[y].Length;
+                    string spacing = "";
+                    while (spacing.Length < x)
+                    {
+                        spacing += " ";
+                    }
+                    pane.Add(spacing + line);
                 }
+                else
+                {
+                    int w = line.Length;
+                    if (x + w > pane[y].Length)
+                    {
+                        w = pane[y].Length;
+                    }
 
-                pane[y] = pane[y].Remove(x, w).Insert(x, line);
+                    pane[y] = pane[y].Remove(x, w).Insert(x, line);
+                }
             }
         }
 

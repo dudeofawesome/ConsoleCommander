@@ -15,6 +15,7 @@ namespace ConsoleCommander
         public ConsoleCommander(bool horizontal = true)
         {
             Console.BufferWidth++;
+            Console.BufferHeight += 2;
             this.horizontal = horizontal;
 
             //panes.Add(new ConsoleCommanderPane(Console.WindowWidth / 3, Console.WindowHeight));
