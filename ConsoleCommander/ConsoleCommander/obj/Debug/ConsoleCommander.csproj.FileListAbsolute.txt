@@ -1,6 +1,0 @@
-C:\Users\jhamo\Documents\GitHub\ConsoleCommander\ConsoleCommander\ConsoleCommander\bin\Debug\ConsoleCommander.pdb
-C:\Users\jhamo\Documents\GitHub\ConsoleCommander\ConsoleCommander\ConsoleCommander\obj\Debug\ConsoleCommander.csprojResolveAssemblyReference.cache
-C:\Users\jhamo\Documents\GitHub\ConsoleCommander\ConsoleCommander\ConsoleCommander\obj\Debug\ConsoleCommander.pdb
-C:\Users\jhamo\Documents\GitHub\ConsoleCommander\ConsoleCommander\ConsoleCommander\bin\Debug\ConsoleCommander.dll.config
-C:\Users\jhamo\Documents\GitHub\ConsoleCommander\ConsoleCommander\ConsoleCommander\bin\Debug\ConsoleCommander.dll
-C:\Users\jhamo\Documents\GitHub\ConsoleCommander\ConsoleCommander\ConsoleCommander\obj\Debug\ConsoleCommander.dll
