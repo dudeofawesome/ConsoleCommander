@@ -15,6 +15,7 @@ namespace ConsoleCommander
 
         static void Main(string[] args)
         {
+            Console.WindowHeight = 60;
             cmdr = new ConsoleCommander(false);
             pp1 = cmdr.AddPane(Console.WindowWidth, 4);
             pp1.Write("1-1 Hello, World!");
@@ -46,7 +47,10 @@ namespace ConsoleCommander
         {
             pp1.Write(DateTime.Now.ToString(), 0, 2);
             pp21.Write(DateTime.Now.Millisecond.ToString(), 0, 0, true);
-            //pp22.Write("Danger Will Robinson!", 0, 0, true);
+            if (DateTime.UtcNow.Second % 4 == 0 && DateTime.UtcNow.Millisecond < 1000 / (((System.Timers.Timer)sender).Interval - 5))
+            {
+                pp22.Write("Error! time:" + DateTime.Now.ToString(), 0, 0, true);
+            }
             cmdr.Render();
         }
     }
