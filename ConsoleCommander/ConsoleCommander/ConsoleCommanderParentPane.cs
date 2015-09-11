@@ -91,6 +91,23 @@ namespace ConsoleCommander
                         {
                             ret += retPanes[j][i];
                         }
+                        else
+                        {
+                            if (j + 1 >= retPanes.Count)
+                            {
+                                ret += "\n";
+                            }
+                            else
+                            {
+                                string blanks = "";
+                                while (blanks.Length < panes[j].getWidth() - 1)
+                                {
+                                    blanks += " ";
+                                }
+                                blanks += "│";
+                                ret += blanks;
+                            }
+                        }
                     }
                 }
 
