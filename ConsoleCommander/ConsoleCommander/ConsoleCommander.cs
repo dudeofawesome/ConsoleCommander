@@ -7,7 +7,7 @@ using System.IO;
 
 namespace ConsoleCommander
 {
-    class ConsoleCommander
+    public class ConsoleCommander
     {
         private List<ConsoleCommanderParentPane> panes = new List<ConsoleCommanderParentPane>();
         private bool horizontal = true;

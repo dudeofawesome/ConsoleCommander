@@ -7,7 +7,7 @@ using System.IO;
 
 namespace ConsoleCommander
 {
-    class ConsoleCommanderPane : ConsoleCommanderParentPane
+    public class ConsoleCommanderPane : ConsoleCommanderParentPane
     {
         //private ConsoleCommanderParentPane parent;
         List<string> pane = new List<string>();

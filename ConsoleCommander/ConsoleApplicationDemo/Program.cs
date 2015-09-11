@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleCommander;
 
-namespace ConsoleCommander
+namespace ConsoleCommanderDemo
 {
     class Program
     {
-        static ConsoleCommander cmdr;
+        static ConsoleCommander.ConsoleCommander cmdr;
         static ConsoleCommanderPane pp1;
         static ConsoleCommanderPane pp21;
         static ConsoleCommanderPane pp22;
@@ -16,7 +17,7 @@ namespace ConsoleCommander
         static void Main(string[] args)
         {
             Console.WindowHeight = 60;
-            cmdr = new ConsoleCommander(false);
+            cmdr = new ConsoleCommander.ConsoleCommander(false);
             pp1 = cmdr.AddPane(Console.WindowWidth, 4);
             pp1.Write("1-1 Hello, World!");
             pp1.Write("The time is ");

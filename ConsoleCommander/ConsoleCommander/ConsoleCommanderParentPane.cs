@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleCommander
 {
-    class ConsoleCommanderParentPane
+    public class ConsoleCommanderParentPane
     {
         private List<ConsoleCommanderParentPane> panes = new List<ConsoleCommanderParentPane>();
         int width = 0;
