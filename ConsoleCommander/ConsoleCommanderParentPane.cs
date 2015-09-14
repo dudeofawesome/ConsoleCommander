@@ -30,6 +30,11 @@ namespace ConsoleCommander
 
         }
 
+        public virtual void Write(object line, int x = -1, int y = -1, bool insert = false, bool allowOverFlow = true)
+        {
+            Write(line.ToString(), x, y, insert, allowOverFlow);
+        }
+
         public virtual void Clear(int x = 0, int y = 0, int w = -1, int h = -1)
         {
 

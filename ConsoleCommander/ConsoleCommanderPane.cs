@@ -47,6 +47,11 @@ namespace ConsoleCommander
             {
                 if (y >= pane.Count)
                 {
+                    while (pane.Count < y)
+                    {
+                        pane.Add("");
+                    }
+
                     string spacing = "";
                     while (spacing.Length < x)
                     {
@@ -69,29 +74,32 @@ namespace ConsoleCommander
 
         public override void Clear(int x = 0, int y = 0, int w = -1, int h = -1)
         {
-            if (w == -1)
+            if (pane.Count > 0)
             {
-                w = width;
-            }
-            if (h == -1)
-            {
-                h = height;
-            }
-
-            for (int i = y; i < h; i++)
-            {
-                int _w = w;
-                if (x + w > pane[i].Length)
+                if (w == -1)
                 {
-                    _w = pane[i].Length;
+                    w = width;
+                }
+                if (h == -1)
+                {
+                    h = height;
                 }
 
-                string blanks = "";
-                for (int j = y; j < _w; j++)
+                for (int i = y; i < h && i < pane.Count; i++)
                 {
-                    blanks += " ";
+                    int _w = w;
+                    if (x + w > pane[i].Length)
+                    {
+                        _w = pane[i].Length;
+                    }
+
+                    string blanks = "";
+                    for (int j = y; j < _w; j++)
+                    {
+                        blanks += " ";
+                    }
+                    pane[i] = pane[i].Remove(x, _w).Insert(x, blanks);
                 }
-                pane[i] = pane[i].Remove(x, _w).Insert(x, blanks);
             }
         }
 
