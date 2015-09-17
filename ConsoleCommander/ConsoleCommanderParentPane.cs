@@ -37,7 +37,10 @@ namespace ConsoleCommander
 
         public virtual void Clear(int x = 0, int y = 0, int w = -1, int h = -1)
         {
-
+            for (int i = 0; i < panes.Count; i++)
+            {
+                panes[i].Clear();
+            }
         }
 
         public virtual string Render()

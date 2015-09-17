@@ -101,6 +101,15 @@ namespace ConsoleCommander
                     pane[i] = pane[i].Remove(x, _w).Insert(x, blanks);
                 }
             }
+
+            // remove completely blank lines in clearing rect
+            for (int i = y; i < y + h && i < pane.Count; i++)
+            {
+                if (string.IsNullOrWhiteSpace(pane[i]))
+                {
+                    pane.RemoveAt(i--);
+                }
+            }
         }
 
         override public string Render()
